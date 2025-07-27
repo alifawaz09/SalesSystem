@@ -1,0 +1,40 @@
+@startuml
+
+class Client {
+  +Long id
+  +String name
+  +String lastName
+  +String mobile
+}
+
+class Product {
+  +Long id
+  +String name
+  +String description
+  +String category
+  +LocalDateTime creationDate
+}
+
+class Sale {
+  +Long id
+  +String seller
+  +double total
+  +Client client
+  +List<SaleTransaction> transactions
+}
+
+class SaleTransaction {
+  +Long id
+  +Product product
+  +Sale sale
+  +int quantity
+  +double price
+}
+
+
+
+Client "1" -- "many" Sale
+Sale "1" -- "many" SaleTransaction
+Product "1" -- "many" SaleTransaction
+
+@enduml
